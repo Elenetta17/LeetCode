@@ -1,0 +1,22 @@
+class Solution(object):
+    def findMatrix(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums = sorted(nums)
+        res = []
+        res.append([nums[0]])
+        current_count = 1
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i - 1]:
+                current_count += 1
+                if current_count > len(res):
+                    res.append([nums[i]])
+                else:
+                    res[current_count - 1].append(nums[i])
+            else:
+                res[0].append(nums[i])
+                current_count = 1
+        return res
+        
